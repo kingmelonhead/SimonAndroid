@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
-import com.example.simongame.persistence.Application
+import com.example.simongame.persistence.ScoreApplication
 import kotlinx.android.synthetic.main.activity_game_screen.*
 
 private const val START = 0
@@ -21,7 +20,7 @@ private const val HARD = 2
 
 class GameScreen : AppCompatActivity() {
     private val viewModel: MainActivityViewModel by viewModels {
-        MainActivityViewModel.MainActivityViewModelFactory((application as Application).repository)
+        MainActivityViewModel.MainActivityViewModelFactory((application as ScoreApplication).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +33,6 @@ class GameScreen : AppCompatActivity() {
             Log.e("Tag","Difficulty is being set :  ${ viewModel.difficultly.value}")
         }
 
-
         viewModel.initGame()
         initObservers()
         initButtons()
@@ -45,6 +43,7 @@ class GameScreen : AppCompatActivity() {
         viewModel.color.observe(this) { updateColor() }
         viewModel.correct.observe(this) { loss()}
         viewModel.score.observe(this) { refreshScore() }
+
     }
 
     private fun initButtons(){
@@ -66,6 +65,7 @@ class GameScreen : AppCompatActivity() {
     }
 
     private fun refreshButtons() {
+        //turns the buttons on and off so that buttons cant be clicked when they arent supposed to be
         when (viewModel.state.value){
             START->{
                 greenButt.isEnabled = false
@@ -91,6 +91,8 @@ class GameScreen : AppCompatActivity() {
         }
     }
     private fun updateColor(){
+        //this is used to change what drawable is on the colored buttons
+        //purpose is so buttons can be highlighted and whatnot
         when(viewModel.color.value){
             "Red"->{
                 redButt.setBackgroundResource(R.drawable.red_outline)
@@ -132,6 +134,7 @@ class GameScreen : AppCompatActivity() {
             }
             val gamedata = Bundle()
             gamedata.putString("Difficulty", difficulty)
+            gamedata.putInt("Score", viewModel.roundCount)
             intent = Intent(this, LossScreen::class.java)
             intent.putExtras(gamedata)
             startActivity(intent)

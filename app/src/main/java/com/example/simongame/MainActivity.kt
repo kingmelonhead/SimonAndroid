@@ -1,24 +1,17 @@
 package com.example.simongame
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.RadioGroup
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat.startActivity
-import androidx.lifecycle.ViewModelProvider
-import com.example.simongame.databinding.ActivityMainBinding
-import com.example.simongame.persistence.Application
+import com.example.simongame.persistence.ScoreApplication
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainActivityViewModel by viewModels {
-        MainActivityViewModel.MainActivityViewModelFactory((application as Application).repository)
+        MainActivityViewModel.MainActivityViewModelFactory((application as ScoreApplication).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -14,8 +14,8 @@ import androidx.lifecycle.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
-import com.example.simongame.persistence.GameObject
-import com.example.simongame.persistence.Repo
+import com.example.simongame.persistence.ScoreContainer
+import com.example.simongame.persistence.SimonRepo
 import kotlinx.coroutines.launch
 
 //the possible states the game may be in
@@ -29,7 +29,7 @@ private const val EASY = 0
 private const val MED = 1
 private const val HARD = 2
 
-class MainActivityViewModel (val repository: Repo): ViewModel() {
+class MainActivityViewModel (val repository: SimonRepo): ViewModel() {
 
     //this can be private. It is only used by the view model
     private var array = MutableLiveData<MutableList<String>>()
@@ -55,8 +55,11 @@ class MainActivityViewModel (val repository: Repo): ViewModel() {
     var correct = MutableLiveData<Boolean>()
     var score = MutableLiveData<Int>()
 
+    var roundCount = 0
+    var needsToUpdateDatabase = true
+
     //used for the database
-    val scores : LiveData<List<GameObject>> = repository.scores.asLiveData()
+    val scoreList : LiveData<List<ScoreContainer>> = repository.scores.asLiveData()
 
     init {
         difficultly.value = 0
@@ -67,7 +70,7 @@ class MainActivityViewModel (val repository: Repo): ViewModel() {
         tempList = arrayListOf()
     }
 
-    fun insert(score: GameObject) = viewModelScope.launch {
+    fun insert(score: ScoreContainer) = viewModelScope.launch {
         repository.insert(score)
     }
 
@@ -126,6 +129,12 @@ class MainActivityViewModel (val repository: Repo): ViewModel() {
         }, 1200)
     }
 
+    private fun emphasizeTimer(){
+        timeHandler.postDelayed( {
+            color.value = "flag"
+        }, emphasizeTime)
+    }
+
     private fun startTimer(){
         //sets up the timer that monitors the button presses
         timerThread = Timer("name", false)
@@ -157,10 +166,10 @@ class MainActivityViewModel (val repository: Repo): ViewModel() {
                 }
             }, 1700)
         }
-        timeHandler.postDelayed( {
-            color.value = "flag"
-        }, emphasizeTime)
+        emphasizeTimer()
     }
+
+
 
     fun swapState(){
         //toggles the game between running and paused
@@ -204,6 +213,9 @@ class MainActivityViewModel (val repository: Repo): ViewModel() {
         if (counter == tempList.size) {
             //the code will reach this point if the player completes the game
 
+            //increment round count
+            roundCount++
+
             //add a new element to the array
             tempList.add(colors.random())
             Log.e("tag", "appended array : $tempList")
@@ -215,7 +227,7 @@ class MainActivityViewModel (val repository: Repo): ViewModel() {
         }
     }
 
-    class MainActivityViewModelFactory(val repository: Repo) : ViewModelProvider.Factory {
+    class MainActivityViewModelFactory(val repository: SimonRepo) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")

@@ -10,18 +10,20 @@
         android:id="@+id/startButt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="52dp"
         android:text="Start"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/scoreBox"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="@+id/scoreBox"
         app:layout_constraintTop_toBottomOf="@+id/scoreBox" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="72dp"
         android:text="Score:"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,28 +33,31 @@
         android:id="@+id/scoreBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="48dp"
         android:text="whatever score is"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/redButt"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/red"
-        app:layout_constraintBottom_toTopOf="@+id/greenButt"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/greenButt"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/greenButt" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/greenButt"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/blueButt"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="12dp"
         android:background="@drawable/blue"
         app:layout_constraintBottom_toBottomOf="@+id/redButt"
@@ -62,18 +67,18 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/greenButt"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="336dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/redButt" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/yellowButt"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="12dp"
         android:background="@drawable/yellow"
         app:layout_constraintBottom_toBottomOf="@+id/greenButt"

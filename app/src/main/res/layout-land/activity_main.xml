@@ -10,37 +10,34 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="40dp"
         android:text="Simon Game"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="302dp"
+        android:layout_marginTop="44dp"
         android:text="Difficulty:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/diffText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:text="Easy"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
@@ -48,30 +45,36 @@
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="120dp"
         android:text="Difficulty Up"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/diffDown"
         app:layout_constraintStart_toEndOf="@+id/diffDown"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toTopOf="@+id/diffDown"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/diffDown"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="56dp"
         android:text="Difficulty Down"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diffText" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnStart"
         android:layout_width="250dp"
         android:layout_height="75dp"
-        android:layout_marginStart="220dp"
         android:layout_marginTop="36dp"
         android:text="Start Game "
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diffUp" />
+        app:layout_constraintEnd_toEndOf="@+id/diffUp"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/diffDown"
+        app:layout_constraintTop_toBottomOf="@+id/diffDown" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
