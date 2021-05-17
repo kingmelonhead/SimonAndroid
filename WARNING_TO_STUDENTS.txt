@@ -1,0 +1,5 @@
+This was a project for an android development class at University of Missouri St. Louis. 
+I am keeping it on my github as part of my portfolio as it displays use of Kotlin and XML. 
+From one programmer to another, feel free to read and learn from my code; 
+However, if you are a student, do not clone this project to turn in as your own. 
+You will be caught as other have been before. 
